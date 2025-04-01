@@ -4,4 +4,4 @@
 |------------|--------------|--------|-------------|-------------------|--------------|
 | 21.3.2025 | 1,5 h | Määrittely&Suunnittelu | Vaiheen 1 tekoa | Käyttöliittymän prototyyppi. Dokumenttin hienosäätö. | Mari, Noora |
 | 30.3.2025 | 1 h | Määrittely&Suunnittelu | Dokumentin hienosäätö | Käyttöliittymän prototyyppi | Mari |
-| 1.4.2025 | 1,5 h | Määrittely&Suunnittelu | Käyttöliittymän prototyyppi | Noora kuva. Mari, tekstit | 
+| 1.4.2025 | 1,5 h | Määrittely&Suunnittelu | Käyttöliittymän prototyyppi | Vaihe 2 aloitus | Noora kuva. Mari, tekstit | 
