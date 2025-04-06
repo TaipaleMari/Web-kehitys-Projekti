@@ -6,3 +6,4 @@
 | 30.3.2025 | 1 h | Määrittely&Suunnittelu | Dokumentin hienosäätö | Käyttöliittymän prototyyppi | Mari |
 | 1.4.2025 | 1,5 h | Määrittely&Suunnittelu | Käyttöliittymän prototyyppi | Vaihe 2 aloitus | Noora kuva. Mari, tekstit | 
 | 3.4.2025 | 2 h | Perusrunko ja päätoiminnallisuudet | 2.1. Ympäristö | 2.2. Backend | Mari ja Noora |
+| 6.4.2025 | 2 h | Backend koodi| tietokanta, yhteys server.js, käyttäjän rekisteröinti | Backend dokumentaatio, frontend koodi | Noora, Mari | 
