@@ -47,7 +47,7 @@ app.post('/register', (req, res) => {
         db.run(
           'INSERT INTO users (username, email, password) VALUES (?, ?, ?)',
           [username, email, hashedPassword],
-          (err) => {
+          function (err) {
             if (err) {
               return res
                 .status(500)
@@ -88,8 +88,85 @@ app.post('/login', (req, res) => {
         .json({ message: 'Virheellinen sähköposti tai salasana' });
     }
 
-    res.status(200).json({ message: 'Kirjautuminen onnistui', username: user.username });
+    res.status(200).json({
+      message: 'Kirjautuminen onnistui',
+      username: user.username,
+      id: user.id
+    });
   });
+});
+
+// ✅ Uuden tehtävän lisäämisreitti
+app.post('/tasks', (req, res) => {
+  const { userId, title, description } = req.body;
+
+  if (!userId || !title) {
+    return res.status(400).json({ message: 'Käyttäjä tai otsikko puuttuu' });
+  }
+
+  const sql = 'INSERT INTO tasks (user_id, title, description) VALUES (?, ?, ?)';
+  db.run(sql, [userId, title, description || null], function (err) {
+    if (err) {
+      return res.status(500).json({ message: 'Tehtävän lisääminen epäonnistui' });
+    }
+    res.status(201).json({ message: 'Tehtävä lisätty', taskId: this.lastID });
+  });
+});
+
+// ✅ Haetaan käyttäjän tehtävät
+app.get('/tasks/:userId', (req, res) => {
+  const { userId } = req.params;
+
+  db.all('SELECT * FROM tasks WHERE user_id = ?', [userId], (err, tasks) => {
+    if (err) {
+      return res.status(500).json({ message: 'Tietokantavirhe' });
+    }
+
+    res.status(200).json({ tasks });
+  });
+});
+
+// ✅ Poista tehtävä
+app.delete('/tasks/:taskId', (req, res) => {
+  const { taskId } = req.params;
+
+  db.run('DELETE FROM tasks WHERE id = ?', [taskId], function (err) {
+    if (err) {
+      return res.status(500).json({ message: 'Tehtävän poistaminen epäonnistui' });
+    }
+
+    if (this.changes === 0) {
+      return res.status(404).json({ message: 'Tehtävää ei löytynyt' });
+    }
+
+    res.status(200).json({ message: 'Tehtävä poistettu' });
+  });
+});
+
+// ✅ Muokkaa tehtävän tietoja
+app.put('/tasks/:taskId', (req, res) => {
+  const { taskId } = req.params;
+  const { title, description } = req.body;
+
+  if (!title) {
+    return res.status(400).json({ message: 'Tehtävän otsikko on pakollinen' });
+  }
+
+  db.run(
+    'UPDATE tasks SET title = ?, description = ? WHERE id = ?',
+    [title, description, taskId],
+    function (err) {
+      if (err) {
+        return res.status(500).json({ message: 'Tehtävän muokkaaminen epäonnistui' });
+      }
+
+      if (this.changes === 0) {
+        return res.status(404).json({ message: 'Tehtävää ei löytynyt' });
+      }
+
+      res.status(200).json({ message: 'Tehtävä päivitetty' });
+    }
+  );
 });
 
 // Palvelimen käynnistys
