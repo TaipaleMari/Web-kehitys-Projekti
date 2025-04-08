@@ -8,3 +8,4 @@
 | 3.4.2025 | 2 h | Perusrunko ja päätoiminnallisuudet | 2.1. Ympäristö | 2.2. Backend | Mari ja Noora |
 | 6.4.2025 | 2 h | Backend koodi| tietokanta, yhteys server.js, käyttäjän rekisteröinti | Backend dokumentaatio, frontend koodi | Noora, Mari | 
 | 7.4.2025 | 2,5 h | Frontend | etusivu, rekisteröinti, kirjautuminen, käyttäjän sivu + backend dokumentointi | Ulkoasu, frontend dokumentointi | Noora ja Mari |
+| 8.4.2025 | 45 min | Frontend | AddTasksForm.js, Dashboard.css, päivitetty backend | Dokumentin päivitys, sovelluksen ulkoasu, tehtävälista | Noora |
