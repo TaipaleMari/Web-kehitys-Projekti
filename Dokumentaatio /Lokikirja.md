@@ -11,4 +11,5 @@
 | 8.4.2025 | 45 min | Frontend | AddTasksForm.js, Dashboard.css, päivitetty backend | Dokumentin päivitys, sovelluksen ulkoasu, tehtävälista | Noora |
 | 14.4.2025 | 2 h | Dokumentointi ja sovellus | Dokumentoinnin päivitystä ja sovelluksen toiminnallisuuksien muokkausta | Ulkoasu, Dokumentti loppuun | Mari |
 | 15.4.2025 | 3,5 h | Siirto Azureen ja ongelmien ratkaisua | Siirto Azureen, selaimessa ei käynnisty? |  | Mari |
-| 15.4.2025 | ? | Ulkoasua, toiminnallisuuden lisäämistä, ongelmien ratkontaa |  | Noora |
+| 15.4.2025 | 4 h | Perusrunko ja päätoiminnallisuudet |  Ulkoasua, toiminnallisuuden lisäämistä, ongelmien ratkontaa | ongelmien selvitys ja valmiin koodin pushaaminen |Noora |
+|15.4.2025 | 2 h | Perusrunko ja päätoiminnallisuudet | dokumentin muokkaus ja siistiminen | | Mari |
