@@ -10,3 +10,5 @@
 | 7.4.2025 | 2,5 h | Frontend | etusivu, rekisteröinti, kirjautuminen, käyttäjän sivu + backend dokumentointi | Ulkoasu, frontend dokumentointi | Noora ja Mari |
 | 8.4.2025 | 45 min | Frontend | AddTasksForm.js, Dashboard.css, päivitetty backend | Dokumentin päivitys, sovelluksen ulkoasu, tehtävälista | Noora |
 | 14.4.2025 | 2 h | Dokumentointi ja sovellus | Dokumentoinnin päivitystä ja sovelluksen toiminnallisuuksien muokkausta | Ulkoasu, Dokumentti loppuun | Mari |
+| 15.4.2025 | 3,5 h | Siirto Azureen ja ongelmien ratkaisua | Siirto Azureen, selaimessa ei käynnisty? |  | Mari |
+| 15.4.2025 | ? | Ulkoasua, toiminnallisuuden lisäämistä, ongelmien ratkontaa |  | Noora |
