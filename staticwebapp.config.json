@@ -1,0 +1,20 @@
+{
+    "navigationFallback": {
+      "rewrite": "/index.html"
+    },
+    "routes": [
+      {
+        "route": "/api/*",
+        "allowedRoles": ["anonymous"]
+      },
+      {
+        "route": "/login",
+        "allowedRoles": ["anonymous"]
+      },
+      {
+        "route": "/dashboard",
+        "allowedRoles": ["authenticated"]
+      }
+    ]
+  }
+  
