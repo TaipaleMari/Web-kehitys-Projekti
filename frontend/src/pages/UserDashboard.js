@@ -7,7 +7,7 @@ function UserDashboard({ setIsAuthenticated }) {
   const [username, setUsername] = useState('');
   const [userId, setUserId] = useState(null);
   const [tasks, setTasks] = useState([]);
-  const [newTask, setNewTask] = useState({ title: '', description: '' });
+  const [newTask, setNewTask] = useState({ id: null, title: '', description: '' });
 
   useEffect(() => {
     const storedUser = localStorage.getItem('user');
@@ -18,20 +18,19 @@ function UserDashboard({ setIsAuthenticated }) {
         const parsedUser = JSON.parse(storedUser);
         setUsername(parsedUser.username || 'Käyttäjä');
         setUserId(parsedUser.id);
-        fetchTasks(parsedUser.id); // Hae käyttäjän tehtävät tietokannasta
+        fetchTasks(parsedUser.id);
       } catch {
         setUsername('Käyttäjä');
       }
     }
   }, [navigate]);
 
-  // Haetaan käyttäjän tehtävät tietokannasta
   const fetchTasks = async (userId) => {
     try {
-      const response = await fetch(`http://localhost:5000/tasks/${userId}`);
+      const response = await fetch(`/api/tasks/${userId}`);
       const data = await response.json();
       if (response.ok) {
-        setTasks(data.tasks); // Oletetaan, että palvelin palauttaa tehtävät
+        setTasks(data.tasks || []);
       } else {
         alert(data.message || 'Virhe tehtävien lataamisessa.');
       }
@@ -40,27 +39,30 @@ function UserDashboard({ setIsAuthenticated }) {
     }
   };
 
-  // Kirjaudutaan ulos
   const handleLogout = () => {
     localStorage.removeItem('user');
     setIsAuthenticated(false);
     navigate('/login');
   };
 
-  // Lomakkeen kenttien muutokset
   const handleChange = (e) => {
     const { name, value } = e.target;
     setNewTask((prev) => ({ ...prev, [name]: value }));
   };
 
-  // Uuden tehtävän lisääminen
-  const handleAddTask = async (e) => {
+  const handleSaveTask = async (e) => {
     e.preventDefault();
     if (!newTask.title.trim()) return;
 
+    const endpoint = newTask.id
+      ? `/api/tasks/update/${newTask.id}`
+      : `/api/tasks`;
+
+    const method = newTask.id ? 'PUT' : 'POST';
+
     try {
-      const response = await fetch('http://localhost:5000/tasks', {
-        method: 'POST',
+      const response = await fetch(endpoint, {
+        method,
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
           userId,
@@ -71,31 +73,34 @@ function UserDashboard({ setIsAuthenticated }) {
 
       const data = await response.json();
       if (response.ok) {
-        const addedTask = {
-          id: data.taskId,
-          title: newTask.title,
-          description: newTask.description
-        };
-        setTasks([...tasks, addedTask]); // Lisää uusi tehtävä listaan
-        setNewTask({ title: '', description: '' }); // Tyhjennä lomake
+        if (newTask.id) {
+          setTasks(tasks.map((t) => (t.id === newTask.id ? { ...t, ...newTask } : t)));
+        } else {
+          const addedTask = {
+            id: data.taskId,
+            title: newTask.title,
+            description: newTask.description
+          };
+          setTasks([...tasks, addedTask]);
+        }
+        setNewTask({ id: null, title: '', description: '' });
       } else {
-        alert(data.message || 'Virhe tehtävän tallentamisessa.');
+        alert(data.message || 'Virhe tehtävän tallennuksessa.');
       }
     } catch (error) {
       alert('Yhteysvirhe palvelimeen.');
     }
   };
 
-  // Tehtävän poistaminen
   const handleDeleteTask = async (taskId) => {
     try {
-      const response = await fetch(`http://localhost:5000/tasks/${taskId}`, {
+      const response = await fetch(`/api/tasks/delete/${taskId}`, {
         method: 'DELETE',
       });
 
       const data = await response.json();
       if (response.ok) {
-        setTasks(tasks.filter((task) => task.id !== taskId)); // Poistetaan tehtävä listasta
+        setTasks(tasks.filter((task) => task.id !== taskId));
       } else {
         alert(data.message || 'Virhe tehtävän poistamisessa.');
       }
@@ -104,12 +109,10 @@ function UserDashboard({ setIsAuthenticated }) {
     }
   };
 
-  // Tehtävän muokkaaminen
-  const handleEditTask = async (taskId) => {
+  const handleEditTask = (taskId) => {
     const taskToEdit = tasks.find((task) => task.id === taskId);
     if (taskToEdit) {
-      setNewTask({ title: taskToEdit.title, description: taskToEdit.description });
-      // Voit myös luoda muokkauslomakkeen erikseen, jos haluat muokata tehtäviä erikseen.
+      setNewTask({ id: taskToEdit.id, title: taskToEdit.title, description: taskToEdit.description });
     }
   };
 
@@ -129,7 +132,7 @@ function UserDashboard({ setIsAuthenticated }) {
         ))}
       </ul>
 
-      <form onSubmit={handleAddTask} className="task-form">
+      <form onSubmit={handleSaveTask} className="task-form">
         <input
           type="text"
           name="title"
@@ -144,7 +147,9 @@ function UserDashboard({ setIsAuthenticated }) {
           value={newTask.description}
           onChange={handleChange}
         />
-        <button type="submit" className="add-task-btn">+ Lisää uusi tehtävä</button>
+        <button type="submit" className="add-task-btn">
+          {newTask.id ? 'Tallenna muutokset' : '+ Lisää uusi tehtävä'}
+        </button>
       </form>
 
       <br />
@@ -154,7 +159,3 @@ function UserDashboard({ setIsAuthenticated }) {
 }
 
 export default UserDashboard;
-
-
-
-

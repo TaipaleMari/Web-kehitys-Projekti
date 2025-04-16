@@ -1,0 +1,19 @@
+{
+    "scriptFile": "../tasks/update.js",
+    "bindings": [
+      {
+        "authLevel": "function",
+        "type": "httpTrigger",
+        "direction": "in",
+        "name": "req",
+        "methods": ["put"],
+        "route": "tasks/update/{taskId}"
+      },
+      {
+        "type": "http",
+        "direction": "out",
+        "name": "$return"
+      }
+    ]
+  }
+  

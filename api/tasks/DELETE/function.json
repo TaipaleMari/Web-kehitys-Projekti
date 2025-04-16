@@ -1,0 +1,19 @@
+{
+    "scriptFile": "../tasks/[taskId].js",
+    "bindings": [
+      {
+        "authLevel": "function",
+        "type": "httpTrigger",
+        "direction": "in",
+        "name": "req",
+        "methods": ["delete"],
+        "route": "tasks/delete/{taskId}"
+      },
+      {
+        "type": "http",
+        "direction": "out",
+        "name": "$return"
+      }
+    ]
+  }
+  
