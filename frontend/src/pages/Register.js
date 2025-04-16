@@ -16,7 +16,8 @@ export default function Register() {
     e.preventDefault();
 
     try {
-      const res = await fetch('http://localhost:5000/register', {
+      // Muutettu URL Azure Functions -polkuun
+      const res = await fetch('/api/register', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -26,7 +27,7 @@ export default function Register() {
 
       const data = await res.json();
       if (res.ok) {
-        setMessage(data.message);
+        setMessage(data.message); // Onnistunut rekisteröinti
       } else {
         setMessage(data.message); // Virheviesti palvelimelta
       }
@@ -61,4 +62,3 @@ export default function Register() {
     </div>
   );
 }
-

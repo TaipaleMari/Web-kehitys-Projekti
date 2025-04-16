@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom'; // Lisätään tämä import
-// Link poistettu, koska käytämme navigate
+
 export default function Login({ setIsAuthenticated }) {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
@@ -10,7 +10,8 @@ export default function Login({ setIsAuthenticated }) {
   const kirjaudu = async (e) => {
     e.preventDefault();
 
-    const res = await fetch('http://localhost:5000/login', {
+    // Muutetaan URL niin, että se osoittaa Azure Functions APIin
+    const res = await fetch('/api/login', { // Käytämme relatiivista polkua /api/login
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({ email, password }),
@@ -23,7 +24,7 @@ export default function Login({ setIsAuthenticated }) {
       setIsAuthenticated(true); // Aseta autentikointitila
       navigate('/dashboard'); // Ohjaa dashboardille
     } else {
-      setViesti(data.message);
+      setViesti(data.message); // Näytä virheilmoitus, jos kirjautuminen ei onnistu
     }
   };
 
@@ -46,7 +47,7 @@ export default function Login({ setIsAuthenticated }) {
         <button type="submit">Kirjaudu</button>
       </form>
 
-      <p>{viesti}</p>
+      <p>{viesti}</p> {/* Näytetään virheilmoitus tai tervetuloviesti */}
     </div>
   );
 }
