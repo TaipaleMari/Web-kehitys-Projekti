@@ -17,7 +17,7 @@ export default function Login({ setIsAuthenticated }) {
       body: JSON.stringify({ email, password }),
     });
 
-    const data = await res.json();
+    const data = await res.json().catch(() => null);
     if (res.ok) {
       setViesti(`Tervetuloa, ${data.username}!`);
       localStorage.setItem('user', JSON.stringify(data)); // Tallenna käyttäjän tiedot localStorageen
