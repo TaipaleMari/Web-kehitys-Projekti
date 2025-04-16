@@ -13,4 +13,4 @@
 | 15.4.2025 | 3,5 h | Siirto Azureen ja ongelmien ratkaisua | Siirto Azureen, selaimessa ei käynnisty? |  | Mari |
 | 15.4.2025 | 4 h | Perusrunko ja päätoiminnallisuudet |  Ulkoasua, toiminnallisuuden lisäämistä, ongelmien ratkontaa | ongelmien selvitys ja valmiin koodin pushaaminen |Noora |
 |15.4.2025 | 2 h | Perusrunko ja päätoiminnallisuudet | dokumentin muokkaus ja siistiminen | | Mari |
-| 16.4.2025 | 2 h | Sovellus Azureen | Uudelleen yhdistys Azureen, api-kansion lisääminen ja muutokset | | Mari |
+| 16.4.2025 | 3,5 h | Sovellus Azureen | Uudelleen yhdistys Azureen, api-kansion lisääminen ja muutokset | Azuren osoitteella kirjautuminen tai rekisteröinti ei onnistu?? | Mari |
