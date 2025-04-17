@@ -1,4 +1,4 @@
-const fs = require('fs');
+const sqlite3 = require('sqlite3').verbose();
 const path = require('path');
 
 module.exports = async function (context, req) {
@@ -12,31 +12,27 @@ module.exports = async function (context, req) {
     return;
   }
 
-  const filePath = path.join(__dirname, '../../backend/users.json');
-  let users = [];
+  const dbPath = path.join(__dirname, '../../backend/database.db');
+  const db = new sqlite3.Database(dbPath);
 
-  try {
-    const data = fs.readFileSync(filePath, 'utf-8');
-    users = JSON.parse(data);
-  } catch (err) {
-    context.res = {
-      status: 500,
-      body: { message: "Palvelinvirhe käyttäjätietojen lukemisessa" }
-    };
-    return;
-  }
-
-  const user = users.find(u => u.username === email && u.password === password);
-
-  if (user) {
-    context.res = {
-      status: 200,
-      body: { username: user.username }
-    };
-  } else {
-    context.res = {
-      status: 401,
-      body: { message: "Virheellinen kirjautuminen" }
-    };
-  }
+  db.get(`SELECT * FROM users WHERE username = ? AND password = ?`, [email, password], (err, row) => {
+    if (err) {
+      context.res = {
+        status: 500,
+        body: { message: "Virhe kirjautuessa" }
+      };
+    } else if (row) {
+      context.res = {
+        status: 200,
+        body: { username: row.username }
+      };
+    } else {
+      context.res = {
+        status: 401,
+        body: { message: "Virheellinen kirjautuminen" }
+      };
+    }
+    db.close();
+  });
 };
+

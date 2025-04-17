@@ -1,4 +1,4 @@
-const fs = require('fs');
+const sqlite3 = require('sqlite3').verbose();
 const path = require('path');
 
 module.exports = async function (context, req) {
@@ -7,35 +7,53 @@ module.exports = async function (context, req) {
   if (!username || !password) {
     context.res = {
       status: 400,
-      body: { message: "Käyttäjätunnus ja salasana vaaditaan" }
+      body: { message: "Käyttäjänimi ja salasana vaaditaan" }
     };
     return;
   }
 
-  const filePath = path.join(__dirname, '../../backend/users.json');
-  let users = [];
+  const dbPath = path.join(__dirname, '../../backend/database.db');
+  const db = new sqlite3.Database(dbPath);
 
-  try {
-    const data = fs.readFileSync(filePath, 'utf-8');
-    users = JSON.parse(data);
-  } catch (err) {
-    users = [];
-  }
+  db.serialize(() => {
+    db.run(`CREATE TABLE IF NOT EXISTS users (
+      id INTEGER PRIMARY KEY AUTOINCREMENT,
+      username TEXT UNIQUE,
+      password TEXT
+    )`);
 
-  const userExists = users.find(user => user.username === username);
-  if (userExists) {
-    context.res = {
-      status: 409,
-      body: { message: "Käyttäjänimi on jo käytössä" }
-    };
-    return;
-  }
+    db.get(`SELECT * FROM users WHERE username = ?`, [username], (err, row) => {
+      if (err) {
+        context.res = {
+          status: 500,
+          body: { message: "Virhe tarkistaessa käyttäjän olemassaoloa" }
+        };
+        db.close();
+        return;
+      }
 
-  users.push({ username, password });
-  fs.writeFileSync(filePath, JSON.stringify(users, null, 2));
-
-  context.res = {
-    status: 200,
-    body: { message: `Käyttäjä ${username} rekisteröity!` }
-  };
+      if (row) {
+        context.res = {
+          status: 409,
+          body: { message: "Käyttäjänimi on jo käytössä" }
+        };
+        db.close();
+      } else {
+        db.run(`INSERT INTO users (username, password) VALUES (?, ?)`, [username, password], function (err) {
+          if (err) {
+            context.res = {
+              status: 500,
+              body: { message: "Virhe luodessa käyttäjää" }
+            };
+          } else {
+            context.res = {
+              status: 200,
+              body: { message: `Käyttäjä ${username} rekisteröity!` }
+            };
+          }
+          db.close();
+        });
+      }
+    });
+  });
 };
