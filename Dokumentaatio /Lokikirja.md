@@ -14,3 +14,5 @@
 | 15.4.2025 | 4 h | Perusrunko ja päätoiminnallisuudet |  Ulkoasua, toiminnallisuuden lisäämistä, ongelmien ratkontaa | ongelmien selvitys ja valmiin koodin pushaaminen |Noora |
 |15.4.2025 | 2 h | Perusrunko ja päätoiminnallisuudet | dokumentin muokkaus ja siistiminen | | Mari |
 | 16.4.2025 | 3,5 h | Sovellus Azureen | Uudelleen yhdistys Azureen, api-kansion lisääminen ja muutokset | Azuren osoitteella kirjautuminen tai rekisteröinti ei onnistu?? | Mari |
+| 16.4.2025 | ? h | Toiminnallisuuksia | tehtävien muokkaus ja poisto |  | Noora | 
+| 17.4.2025 | 2,5 h | Ongelmien selvittelyä Azuren api-kutsuille | Koodin reitityksen muutoksia, login / register ei azuressa toimi | | Mari | 
