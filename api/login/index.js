@@ -15,11 +15,11 @@ module.exports = async function (context, req) {
   const dbPath = path.join(__dirname, '../../backend/database.db');
   const db = new sqlite3.Database(dbPath);
 
-  db.get(`SELECT * FROM users WHERE username = ? AND password = ?`, [email, password], (err, row) => {
+  db.get("SELECT * FROM users WHERE username = ? AND password = ?", [email, password], (err, row) => {
     if (err) {
       context.res = {
         status: 500,
-        body: { message: "Virhe kirjautuessa" }
+        body: { message: "Palvelinvirhe tietokannassa" }
       };
     } else if (row) {
       context.res = {
@@ -32,7 +32,7 @@ module.exports = async function (context, req) {
         body: { message: "Virheellinen kirjautuminen" }
       };
     }
+
     db.close();
   });
 };
-
