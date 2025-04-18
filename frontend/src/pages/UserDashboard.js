@@ -1,30 +1,36 @@
+// Tuodaan Reactin hookit ja navigointityökalu
 import React, { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import './Dashboard.css';
 
 function UserDashboard({ setIsAuthenticated }) {
   const navigate = useNavigate();
+
+  // Tilamuuttujat käyttäjälle ja tehtäville
   const [username, setUsername] = useState('');
   const [userId, setUserId] = useState(null);
   const [tasks, setTasks] = useState([]);
   const [newTask, setNewTask] = useState({ id: null, title: '', description: '' });
 
+  // Tarkistetaan onko käyttäjä kirjautunut, ja haetaan tehtävät
   useEffect(() => {
     const storedUser = localStorage.getItem('user');
     if (!storedUser) {
+      // Jos ei käyttäjää, ohjataan kirjautumissivulle
       navigate('/login');
     } else {
       try {
         const parsedUser = JSON.parse(storedUser);
         setUsername(parsedUser.username || 'Käyttäjä');
         setUserId(parsedUser.id);
-        fetchTasks(parsedUser.id);
+        fetchTasks(parsedUser.id); // Haetaan käyttäjän tehtävät
       } catch {
         setUsername('Käyttäjä');
       }
     }
   }, [navigate]);
 
+  // Hakee tehtävät palvelimelta
   const fetchTasks = async (userId) => {
     try {
       const response = await fetch(`/api/tasks/${userId}`);
@@ -39,24 +45,28 @@ function UserDashboard({ setIsAuthenticated }) {
     }
   };
 
+  // Kirjaa käyttäjän ulos
   const handleLogout = () => {
-    localStorage.removeItem('user');
-    setIsAuthenticated(false);
-    navigate('/login');
+    localStorage.removeItem('user'); // Poistetaan käyttäjätiedot
+    setIsAuthenticated(false); // Päivitetään kirjautumistila
+    navigate('/login'); // Ohjataan kirjautumissivulle
   };
 
+  // Lomakekenttien muutoskäsittelijä
   const handleChange = (e) => {
     const { name, value } = e.target;
     setNewTask((prev) => ({ ...prev, [name]: value }));
   };
 
+  // Tallennetaan uusi tai muokattu tehtävä
   const handleSaveTask = async (e) => {
     e.preventDefault();
-    if (!newTask.title.trim()) return;
+    if (!newTask.title.trim()) return; // Tyhjää otsikkoa ei sallita
 
+    // Määritetään oikea reitti ja metodi
     const endpoint = newTask.id
-      ? `/api/tasks/update/${newTask.id}`
-      : `/api/tasks`;
+      ? `/api/tasks/update/${newTask.id}` // Muokkaus
+      : `/api/tasks`;                    // Uusi
 
     const method = newTask.id ? 'PUT' : 'POST';
 
@@ -74,8 +84,10 @@ function UserDashboard({ setIsAuthenticated }) {
       const data = await response.json();
       if (response.ok) {
         if (newTask.id) {
+          // Päivitetään olemassa oleva tehtävä listassa
           setTasks(tasks.map((t) => (t.id === newTask.id ? { ...t, ...newTask } : t)));
         } else {
+          // Lisätään uusi tehtävä listaan
           const addedTask = {
             id: data.taskId,
             title: newTask.title,
@@ -83,6 +95,7 @@ function UserDashboard({ setIsAuthenticated }) {
           };
           setTasks([...tasks, addedTask]);
         }
+        // Tyhjennetään lomake
         setNewTask({ id: null, title: '', description: '' });
       } else {
         alert(data.message || 'Virhe tehtävän tallennuksessa.');
@@ -92,6 +105,7 @@ function UserDashboard({ setIsAuthenticated }) {
     }
   };
 
+  // Poistaa tehtävän annetun ID:n perusteella
   const handleDeleteTask = async (taskId) => {
     try {
       const response = await fetch(`/api/tasks/delete/${taskId}`, {
@@ -109,6 +123,7 @@ function UserDashboard({ setIsAuthenticated }) {
     }
   };
 
+  // Asettaa lomakkeelle muokattavan tehtävän
   const handleEditTask = (taskId) => {
     const taskToEdit = tasks.find((task) => task.id === taskId);
     if (taskToEdit) {
@@ -121,6 +136,7 @@ function UserDashboard({ setIsAuthenticated }) {
       <h2>Tervetuloa, {username}!</h2>
       <p>Alla ovat tämän päivän tehtäväsi:</p>
 
+      {/* Tehtävälista */}
       <ul className="task-list">
         {tasks.map((task) => (
           <li key={task.id} className="task-item">
@@ -132,6 +148,7 @@ function UserDashboard({ setIsAuthenticated }) {
         ))}
       </ul>
 
+      {/* Lomake uuden tehtävän lisäämiseksi tai olemassa olevan muokkaamiseksi */}
       <form onSubmit={handleSaveTask} className="task-form">
         <input
           type="text"
@@ -153,9 +170,11 @@ function UserDashboard({ setIsAuthenticated }) {
       </form>
 
       <br />
+      {/* Uloskirjautumispainike */}
       <button className="logout-btn" onClick={handleLogout}>Kirjaudu ulos</button>
     </div>
   );
 }
 
 export default UserDashboard;
+
