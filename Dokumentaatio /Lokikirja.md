@@ -17,3 +17,4 @@
 | 16.4.2025 | 5 h | Toiminnallisuuksia | tehtävien muokkaus ja poisto |  | Noora | 
 | 17.4.2025 | 2,5 h | Ongelmien selvittelyä Azuren api-kutsuille | Koodin reitityksen muutoksia, login / register ei azuressa toimi | | Mari | 
 | 18.4.2025 | 5 h | Ongelmien selvittelyä tehtävien lisäykseen ja tilan muuttamiseen. Testauksia | Testeillä saatu selvitettyä syitä, mutta ei korjattua ongelmaa | | Noora |
+| 18.4.2025 | 1 h | Dokumentaation muokkausta | osan 2. viimeistelyä | | Mari | 
