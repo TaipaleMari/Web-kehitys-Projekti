@@ -18,3 +18,5 @@
 | 17.4.2025 | 2,5 h | Ongelmien selvittelyä Azuren api-kutsuille | Koodin reitityksen muutoksia, login / register ei azuressa toimi | | Mari | 
 | 18.4.2025 | 5 h | Ongelmien selvittelyä tehtävien lisäykseen ja tilan muuttamiseen. Testauksia | Testeillä saatu selvitettyä syitä, mutta ei korjattua ongelmaa | | Noora |
 | 18.4.2025 | 1 h | Dokumentaation muokkausta | osan 2. viimeistelyä | | Mari | 
+| 20.4.2025 | 1,5 h | Esittely | Esittelyn runko ja sisällön pohdintaa | | Mari, Noora |
+| 21.4.2025 | 2 h | Esittely | ESittelyn kirjoittaminen githubiin | | Mari, Noora | 
