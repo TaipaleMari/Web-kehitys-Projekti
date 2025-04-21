@@ -54,12 +54,23 @@ Laskelmat:
 - esittelyvaiheen suunnitteluun :
 - yhteensä
 
-![Linkki lokikirjaan](./Lokikirja.md)
+[Linkki lokikirjaan](https://github.com/TaipaleMari/Web-kehitys-Projekti/blob/main/Dokumentaatio%20/Lokikirja.md)
 
 # 5.Jatkoideat
 
+Mikäli meillä olisi ollut enemmän aikaa panostaa sovelluksen kehittämiseen, olisimme halunneet panostaa seuraaviin asioihin enemmän:
+- sovelluksen ulkoasu
+- navigointipalkki
+- uloskirjautuminen
+- valmis tehtävälistaus
+- tehtävän valmiiksi merkitseminen ja tsemppiviesti käyttäjälle
+
+Meillä olisi sovellukselle myös tulevaisuuden jatkokehitysideoita, joihin kuuluu mm. pelillisä elementtejä (pelihahmo, käyttäjän taso, palkinnot) tai tekoälyn lisääminen, jonka avulla saisimme käyttäjän userDashboardista vieläkin henkilökohtaisemman.  
+
 # 6.Reflektointi
 
-olisi ehkä ollut parempi liittää ensin github azure static web appiin ja lähteä sitä kautta kehittämään sovelluksen toiminnallisuuksia. Nyt teimme ensin osan toiminnallisuuksista, joiden koodaus ei käy yksi yhteen azure static web appin backend-toimintojen kanssa. 
+Saimme hyvin sovelluksen peruskomponentit valmiiksi ja meillä oli selkeä suunnitelma mihin suuntaan haluamme lähteä viemään projektia. Harmiksemme suuri osa loppuajasta kului ongelmien selvittelyyn emmekä saaneet sovelluksesta deadlineen mennessä sellaista kuin olisimme halunneet. 
 
-Reitit menee ristiin eikä azure SWA tiedä mistä aloittaa? 
+Olisiko ollut parempi liittää ensin github azure static web appiin ja lähteä sitä kautta kehittämään sovelluksen toiminnallisuuksia? Nyt teimme ensin osan toiminnallisuuksista, joiden koodaus ei käy yksi yhteen azure static web appin backend-toimintojen kanssa, koodin reiteissä on ogelma jota emme saaneet selvitettyä. 
+
+
