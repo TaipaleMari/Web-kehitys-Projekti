@@ -15,7 +15,7 @@ Tässä vaiheessa jaoimme tehtävät: Mari yhdistäisi tähän asti toimivan git
 
 Turvataksemme sen, että voimme esitellä userDashboardin toimintaa edes localhost-portin kautta, päätimme pitää alkuperäisen koodin vielä erillään toisen kehittäjän omalla koneella. 
 
-*Noora-tehtäväsivu* 
+Teimme aluksi UserDashboardin, jossa käyttäjä pystyi ainoastaan lisäämään, muokkaamaan tai poistamaan tehtäviä. Tässä tehtävien lisääminen ja poistaminen onnistui, mutta tehtävän muokkaaminen loi aina uuden tehtävän sen sijaan, että olisi muokannut olemassa olevaa. Lähdimme kehittämään tehtävälistaa siten, että samalla aloimme työstämään myös tehtävien tilan muuttamista valmiiksi. Loimme TaskList komponentin, jonka tarkoituksena oli keskittyä tehtävien näyttämiseen ja käsittelyyn. Näin ollen pääkomponenetti UserDashboard huolehti enemmän tietojen hakemisesta ja päivittämisestä. Aluksi loimme myös AddNewTask komponentin, mutta tämän toiminnot päätimmet yhdistää UserDashboardiin, kun kohtasimme haasteita tehtävälistan toteutuksessa. Tässä vaiheessa loimme css tiedostot sekä UserDashboardille, että TaskList komponentille. Lopulta haasteeksi muodostui, että sovelluksen Backend oli yhteydessä oikeaan tietokantatiedostoon, mutta taulun rakenne ei päivittynyt oikein. Tämän saimme selville POSTMAN ja SQL testauksien avulla, kun lähdimme selvittämään miksi tehtävien lisääminen tai tilan muuttaminen eivät toimineet. Käytimme myös paljon ```console.log``` toimintoa, jotta saisimme backend terminaaliin mahdollisimman paljon tietoa, että missä kohdassa koodia virhe esiintyy. Loppupäätelmäksi totesimme, että ongelma on todennäköisesti joko tietokannan välimuistista tai siitä, että taulu ylikirjoitetaan backendissä. Tiukka aikataulu aiheutti sen, että emme saaneet ongelmaa korjatuksi.
 
 
 
@@ -44,7 +44,13 @@ Seuraavaksi esittelemme toimimaan saadut käyttötapaukset alkuperäiseltä ja t
     - tietokantaan ei saada yhteyttä "tietokantavirhe"
  
 ### Tehtävien selaaminen, valinta tai luominen
-- 
+- Käyttäjä siirtyy kirjautumisen jälkeen automaattisesti UserDashboard sivulle, joka on käyttäjän etusivu ja näyttää käyttäjän lisäämät tehtävät. Jos tehtäviä ei ole lisätty, näkyy etusivulla teksti "Ei tehtäviä vielä. Lisää ensimmäinen tehtäväsi!"
+- Käyttäjä lisää uuden tehtävän kirjoittamalla lomakkeella automaattisesti näkyviin kenttiin tehtävän otsikon ja kuvauksen, jonka jälkeen käyttäjä painaa "lisää tehtävä"-painiketta. (Tämä ominaisuus ei toimi halutusti)
+      - Sovellus antaa virheilmoituksen "Tehtävän nimi ja kuvaus ovat pakollisia.", jos jompikumpi täytettävistä kentistä on tyhjänä.
+- Käyttäjä voi muokata listalla olevaa tehtävää painamalla "muokkaa"- painiketta. Muokkauksen jälkeen käyttäjä painaa "tallenna" ja muutokset päivittyvät automaattisesti ja tehtävä näkyy muokattuna listassa.
+- Tehtävän poistaminen onnistuu helposti painamalla "poista"-painiketta, jolloin tehtävä poistuu välittömästi listalta.
+- Käyttäjä pystyy merkitsemään haluamansa tehtävän valmiiksi tehtävän nimen ja kuvauksen alla olevasta "merkitse valmiiksi" painikkeesta. (Tämän toimivuutta ei olla saatu missään vaiheessa oikeaksi, joten se miltä tehtävä näyttää tilan muuttamisen jälkeen, ei ole tiedossa tarkkaan kuvaukseen). 
+  
 
 # 4.Käytetyt työtunnit
 
