@@ -15,7 +15,7 @@ Tässä vaiheessa jaoimme tehtävät: Mari yhdistäisi tähän asti toimivan git
 
 Turvataksemme sen, että voimme esitellä userDashboardin toimintaa edes localhost-portin kautta, päätimme pitää alkuperäisen koodin vielä erillään toisen kehittäjän omalla koneella. 
 
-Teimme aluksi UserDashboardin, jossa käyttäjä pystyi ainoastaan lisäämään, muokkaamaan tai poistamaan tehtäviä. Tässä tehtävien lisääminen ja poistaminen onnistui, mutta tehtävän muokkaaminen loi aina uuden tehtävän sen sijaan, että olisi muokannut olemassa olevaa. Lähdimme kehittämään tehtävälistaa siten, että samalla aloimme työstämään myös tehtävien tilan muuttamista valmiiksi. Loimme TaskList komponentin, jonka tarkoituksena oli keskittyä tehtävien näyttämiseen ja käsittelyyn. Näin ollen pääkomponenetti UserDashboard huolehti enemmän tietojen hakemisesta ja päivittämisestä. Aluksi loimme myös AddNewTask komponentin, mutta tämän toiminnot päätimmet yhdistää UserDashboardiin, kun kohtasimme haasteita tehtävälistan toteutuksessa. Tässä vaiheessa loimme css tiedostot sekä UserDashboardille, että TaskList komponentille. Lopulta haasteeksi muodostui, että sovelluksen Backend oli yhteydessä oikeaan tietokantatiedostoon, mutta taulun rakenne ei päivittynyt oikein. Tämän saimme selville POSTMAN ja SQL testauksien avulla, kun lähdimme selvittämään miksi tehtävien lisääminen tai tilan muuttaminen eivät toimineet. Käytimme myös paljon ```console.log``` toimintoa, jotta saisimme backend terminaaliin mahdollisimman paljon tietoa, että missä kohdassa koodia virhe esiintyy. Loppupäätelmäksi totesimme, että ongelma on todennäköisesti joko tietokannan välimuistista tai siitä, että taulu ylikirjoitetaan backendissä. Tiukka aikataulu aiheutti sen, että emme saaneet ongelmaa korjatuksi.
+Aluksi UserDashboard luotiin niin, että käyttäjä pystyi ainoastaan lisäämään, muokkaamaan tai poistamaan tehtäviä. Tässä tehtävien lisääminen ja poistaminen onnistui, mutta tehtävän muokkaaminen loi aina uuden tehtävän sen sijaan, että olisi muokannut olemassa olevaa. Lähdimme kehittämään tehtävälistaa siten, että samalla aloimme työstämään myös tehtävien tilan muuttamista valmiiksi. Loimme TaskList komponentin, jonka tarkoituksena oli keskittyä tehtävien näyttämiseen ja käsittelyyn. Näin ollen pääkomponenetti UserDashboard huolehti enemmän tietojen hakemisesta ja päivittämisestä. Aluksi loimme myös AddNewTask komponentin, mutta tämän toiminnot päätimmet yhdistää UserDashboardiin, kun kohtasimme haasteita tehtävälistan toteutuksessa. Tässä vaiheessa loimme css tiedostot sekä UserDashboardille, että TaskList komponentille. Lopulta haasteeksi muodostui, että sovelluksen Backend oli yhteydessä oikeaan tietokantatiedostoon, mutta taulun rakenne ei päivittynyt oikein. Tämän saimme selville POSTMAN ja SQL testauksien avulla, kun lähdimme selvittämään miksi tehtävien lisääminen tai tilan muuttaminen eivät toimineet. Käytimme myös paljon ```console.log``` toimintoa, jotta saisimme backend terminaaliin mahdollisimman paljon tietoa, että missä kohdassa koodia virhe esiintyy. Loppupäätelmäksi totesimme, että ongelma on todennäköisesti joko tietokannan välimuistista tai siitä, että taulu ylikirjoitetaan backendissä. Tiukka aikataulu aiheutti sen, että emme saaneet ongelmaa korjatuksi.
 
 
 
@@ -50,15 +50,23 @@ Seuraavaksi esittelemme toimimaan saadut käyttötapaukset alkuperäiseltä ja t
 - Käyttäjä voi muokata listalla olevaa tehtävää painamalla "muokkaa"- painiketta. Muokkauksen jälkeen käyttäjä painaa "tallenna" ja muutokset päivittyvät automaattisesti ja tehtävä näkyy muokattuna listassa.
 - Tehtävän poistaminen onnistuu helposti painamalla "poista"-painiketta, jolloin tehtävä poistuu välittömästi listalta.
 - Käyttäjä pystyy merkitsemään haluamansa tehtävän valmiiksi tehtävän nimen ja kuvauksen alla olevasta "merkitse valmiiksi" painikkeesta. (Tämän toimivuutta ei olla saatu missään vaiheessa oikeaksi, joten se miltä tehtävä näyttää tilan muuttamisen jälkeen, ei ole tiedossa tarkkaan kuvaukseen). 
-  
+
+
+### Vertailu vaiheen 1. käyttötapauksiin
+ 1. Rekisteröinti - toteutettu
+ 2. Sisäänkirjautuminen - toteutettu
+ 3. Käyttjälle näytetään tehtäväsivulla lista, josta voi valita itselleen sopivat - ei onnistunut toteutus - syy: koodissa joku rivi ylikirjoittaa backendin valmiin listan
+ 4. Käyttäjä voi lisätä oman tehtävän - toteutettu
+ 5. Käyttäjä voi muokata tehtävää - toteutettu ??
+ 6. Käyttäjä voi merkitä tehtävän suoritetuksi - ei toteutettu - syy: tähän olisi tarvittu valmis tehtävälista, mutta sitä ei saatu toimimaan
 
 # 4.Käytetyt työtunnit
 
 Laskelmat: 
 - vaiheeseen 1. Määrittely ja suunnittelu, käytimme yhteensä 4 h.
 - vaiheeseen 2. Perusrunko ja päätoiminnallisuudet, käytimme yhteensä 35 h 45 min
-- esittelyvaiheen suunnitteluun :
-- yhteensä
+- esittelyvaiheen suunnitteluun ja esitykseen: 5 h
+- yhteensä 44 h 45 min
 
 [Linkki lokikirjaan](https://github.com/TaipaleMari/Web-kehitys-Projekti/blob/main/Dokumentaatio%20/Lokikirja.md)
 
@@ -78,5 +86,9 @@ Meillä olisi sovellukselle myös tulevaisuuden jatkokehitysideoita, joihin kuul
 Saimme hyvin sovelluksen peruskomponentit valmiiksi ja meillä oli selkeä suunnitelma mihin suuntaan haluamme lähteä viemään projektia. Harmiksemme suuri osa loppuajasta kului ongelmien selvittelyyn emmekä saaneet sovelluksesta deadlineen mennessä sellaista kuin olisimme halunneet. 
 
 Olisiko ollut parempi liittää ensin github azure static web appiin ja lähteä sitä kautta kehittämään sovelluksen toiminnallisuuksia? Nyt teimme ensin osan toiminnallisuuksista, joiden koodaus ei käy yksi yhteen azure static web appin backend-toimintojen kanssa, koodin reiteissä on ogelma jota emme saaneet selvitettyä. 
+
+Myös tehtävätaulun luomisessa tuli ongelmia yhteydessä tietokantaan. Emme ole varmoja, vaikuttivatko nämä asiat toisiinsa. 
+
+# 7. Linkki esittelyvideoon
 
 
