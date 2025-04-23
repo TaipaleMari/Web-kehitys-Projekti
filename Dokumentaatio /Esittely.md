@@ -90,4 +90,6 @@ Myös tehtävätaulun luomisessa tuli ongelmia yhteydessä tietokantaan. Emme ol
 
 # 7. Linkki esittelyvideoon
 
+[Esittelyvideo](https://centriafi-my.sharepoint.com/:v:/r/personal/mari_taipale_centria_fi/Documents/Tallenteet/Vaihe4.Esitys.mp4?csf=1&web=1&nav=eyJyZWZlcnJhbEluZm8iOnsicmVmZXJyYWxBcHAiOiJPbmVEcml2ZUZvckJ1c2luZXNzIiwicmVmZXJyYWxBcHBQbGF0Zm9ybSI6IldlYiIsInJlZmVycmFsTW9kZSI6InZpZXciLCJyZWZlcnJhbFZpZXciOiJNeUZpbGVzTGlua0NvcHkifX0&e=mLK7KP)
+
 
