@@ -74,7 +74,6 @@ Laskelmat:
 
 Mikäli meillä olisi ollut enemmän aikaa panostaa sovelluksen kehittämiseen, olisimme halunneet panostaa seuraaviin asioihin enemmän:
 - sovelluksen ulkoasu
-- navigointipalkki
 - uloskirjautuminen
 - valmis tehtävälistaus
 - tehtävän valmiiksi merkitseminen ja tsemppiviesti käyttäjälle
