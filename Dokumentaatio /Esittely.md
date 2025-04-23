@@ -55,9 +55,9 @@ Seuraavaksi esittelemme toimimaan saadut käyttötapaukset alkuperäiseltä ja t
 ### Vertailu vaiheen 1. käyttötapauksiin
  1. Rekisteröinti - toteutettu
  2. Sisäänkirjautuminen - toteutettu
- 3. Käyttjälle näytetään tehtäväsivulla lista, josta voi valita itselleen sopivat - ei onnistunut toteutus - syy: koodissa joku rivi ylikirjoittaa backendin valmiin listan
- 4. Käyttäjä voi lisätä oman tehtävän - toteutettu
- 5. Käyttäjä voi muokata tehtävää - toteutettu ??
+ 3. Käyttäjälle näytetään tehtäväsivulla lista, josta voi valita itselleen sopivat - ei onnistunut toteutus - syy: koodissa joku rivi ylikirjoittaa backendin valmiin listan
+ 4. Käyttäjä voi lisätä oman tehtävän - toteutettu, ei toimi halutusti, lisää tehtävän backendiin, mutta ei näytä lisättyä tehtävää frontendin userDashboardilla
+ 5. Käyttäjä voi muokata tehtävää - toteutettu  + käyttäjä voi poistaa tehtävän
  6. Käyttäjä voi merkitä tehtävän suoritetuksi - ei toteutettu - syy: tähän olisi tarvittu valmis tehtävälista, mutta sitä ei saatu toimimaan
 
 # 4.Käytetyt työtunnit
